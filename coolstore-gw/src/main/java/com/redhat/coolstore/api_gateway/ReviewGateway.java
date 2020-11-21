@@ -91,7 +91,7 @@ public class ReviewGateway extends RouteBuilder {
                     .removeHeaders("CamelHttp*")
                     .setBody(simple("null"))
                     .setHeader(Exchange.HTTP_METHOD, HttpMethods.GET)
-                    .setHeader(Exchange.HTTP_URI, simple("http://{{env:REVIEW_ENDPOINT:review:8080}}/api/review/${header.itemId}"))
+                    .setHeader(Exchange.HTTP_URI, simple("http://{{env:REVIEW_ENDPOINT:review:8081}}/api/review/${header.itemId}"))
                     .to("http4://DUMMY")
                 .onFallback()
         			.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))

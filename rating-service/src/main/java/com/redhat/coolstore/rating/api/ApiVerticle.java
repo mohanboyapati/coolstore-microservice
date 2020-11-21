@@ -54,7 +54,7 @@ public class ApiVerticle extends AbstractVerticle {
 
         vertx.createHttpServer()
             .requestHandler(router::accept)
-            .listen(config().getInteger("rating.http.port", 8080), result -> {
+            .listen(config().getInteger("rating.http.port", 8081), result -> {
                 if (result.succeeded()) {
                     startFuture.complete();
                 } else {

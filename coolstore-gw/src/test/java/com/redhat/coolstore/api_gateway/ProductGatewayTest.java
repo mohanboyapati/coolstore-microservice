@@ -66,8 +66,8 @@ public class ProductGatewayTest {
     	camelContext.getRouteDefinition("productRoute").adviceWith(camelContext, new AdviceWithRouteBuilder() {
 			@Override
 			public void configure() throws Exception {
-				interceptSendToEndpoint("http4://{{env:CATALOG_ENDPOINT:catalog:8080}}/api/products").skipSendToOriginalEndpoint().setBody(constant(productResponseStr));
-				interceptSendToEndpoint("http4://{{env:INVENTORY_ENDPOINT:inventory:8080}}/api/availability/*").skipSendToOriginalEndpoint().setBody(constant(inventoryResponseStr));
+				interceptSendToEndpoint("http4://{{env:CATALOG_ENDPOINT:catalog:8081}}/api/products").skipSendToOriginalEndpoint().setBody(constant(productResponseStr));
+				interceptSendToEndpoint("http4://{{env:INVENTORY_ENDPOINT:inventory:8081}}/api/availability/*").skipSendToOriginalEndpoint().setBody(constant(inventoryResponseStr));
 			}
 		});
 

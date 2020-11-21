@@ -7,7 +7,7 @@ spec:
             failureThreshold: 2
             httpGet:
               path: "/health/liveness"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -17,7 +17,7 @@ spec:
             failureThreshold: 3
             httpGet:
               path: "/health/readiness"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 10

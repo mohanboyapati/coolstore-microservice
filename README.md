@@ -43,11 +43,11 @@ oc process -f openshift/coolstore-template.yaml | oc create -f -
 When all pods are deployed, verify all services are functioning:
 ```
 oc rsh $(oc get pods -o name -l app=coolstore-gw)
-curl http://catalog:8080/api/products
-curl http://inventory:8080/api/availability/329299
-curl http://cart:8080/api/cart/FOO
-curl http://rating:8080/api/rating/329299
-curl http://review:8080/api/review/329299
+curl http://catalog:8081/api/products
+curl http://inventory:8081/api/availability/329299
+curl http://cart:8081/api/cart/FOO
+curl http://rating:8081/api/rating/329299
+curl http://review:8081/api/review/329299
 ```
 
 Deploy Demo: CoolStore Microservices with CI/CD 

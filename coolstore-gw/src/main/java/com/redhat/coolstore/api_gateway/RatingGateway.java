@@ -88,7 +88,7 @@ public class RatingGateway extends RouteBuilder {
                     .removeHeaders("CamelHttp*")
                     .setBody(simple("null"))
                     .setHeader(Exchange.HTTP_METHOD, HttpMethods.POST)
-                    .setHeader(Exchange.HTTP_URI, simple("http://{{env:RATING_ENDPOINT:rating:8080}}/api/rating/${header.itemId}/${header.rating}"))
+                    .setHeader(Exchange.HTTP_URI, simple("http://{{env:RATING_ENDPOINT:rating:8081}}/api/rating/${header.itemId}/${header.rating}"))
                     .to("http4://DUMMY")
                 .onFallback()
         			.setHeader(Exchange.CONTENT_TYPE, constant("application/json"))

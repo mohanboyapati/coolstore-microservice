@@ -743,7 +743,7 @@ function deploy_guides() {
       -e GOGS_REVIEWER_USER=$GOGS_ADMIN_USER \
       -e GOGS_REVIEWER_PASSWORD=$GOGS_ADMIN_PASSWORD -n ${PRJ_CI[0]}
   oc $ARG_OC_OP expose svc/guides -n ${PRJ_CI[0]}
-  oc $ARG_OC_OP set probe dc/guides -n ${PRJ_CI[0]} --readiness --liveness --get-url=http://:8080/ --failure-threshold=5 --initial-delay-seconds=30
+  oc $ARG_OC_OP set probe dc/guides -n ${PRJ_CI[0]} --readiness --liveness --get-url=http://:8081/ --failure-threshold=5 --initial-delay-seconds=30
   oc $ARG_OC_OP set resources dc/guides --limits=cpu=500m,memory=1Gi --requests=cpu=100m,memory=512Mi -n ${PRJ_CI[0]}
 }
 

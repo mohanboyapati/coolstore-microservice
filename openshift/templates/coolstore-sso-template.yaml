@@ -16,8 +16,8 @@ objects:
   apiVersion: v1
   spec:
     ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 8081
+      targetPort: 8081
     selector:
       deploymentConfig: "sso"
   metadata:
@@ -164,7 +164,7 @@ objects:
             containerPort: 8778
             protocol: TCP
           - name: http
-            containerPort: 8080
+            containerPort: 8081
             protocol: TCP
           - name: https
             containerPort: 8443
@@ -316,7 +316,7 @@ objects:
   data:
     client.js: |2
       var request = require('request');
-      var sso_service_url=(process.env.SSO_SERVICE_URL || "http://sso:8080"),
+      var sso_service_url=(process.env.SSO_SERVICE_URL || "http://sso:8081"),
         realm = (process.env.SSO_REALM || "coolstore"),
         sso_reg_user = (process.env.SSO_SERVICE_USER_NAME || "admin"),
         sso_reg_password = (process.env.SSO_SERVICE_USER_PASSWD || "coolstore"),

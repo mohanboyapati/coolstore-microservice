@@ -71,7 +71,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /api/availability/1
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 5
@@ -83,7 +83,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           - containerPort: 8888
@@ -93,7 +93,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /api/availability/1
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             successThreshold: 1
@@ -132,9 +132,9 @@ objects:
     name: inventory-blue
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: inventory-blue
 # Inventory Service - Green
@@ -198,7 +198,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /api/availability/1
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -209,7 +209,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           - containerPort: 8888
@@ -219,7 +219,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /api/availability/1
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 5
@@ -258,9 +258,9 @@ objects:
     name: inventory-green
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: inventory-green
 - apiVersion: v1

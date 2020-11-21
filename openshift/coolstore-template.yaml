@@ -89,18 +89,18 @@ objects:
           - name: COOLSTORE_GW_SERVICE
             value: coolstore-gw
           - name: HOSTNAME_HTTP
-            value: web-ui:8080
+            value: web-ui:8081
           image: web-ui
           imagePullPolicy: Always
           name: web-ui
           ports:
-          - containerPort: 8080
+          - containerPort: 8081
             protocol: TCP
           livenessProbe:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -110,7 +110,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 5
@@ -140,10 +140,10 @@ objects:
     name: web-ui
   spec:
     ports:
-    - name: 8080-tcp
-      port: 8080
+    - name: 8081-tcp
+      port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: web-ui
 - apiVersion: v1
@@ -263,9 +263,9 @@ objects:
     name: coolstore-gw
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: coolstore-gw
 - apiVersion: v1
@@ -376,7 +376,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -387,7 +387,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           - containerPort: 8888
@@ -397,7 +397,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -433,9 +433,9 @@ objects:
     name: inventory
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: inventory
 - apiVersion: v1
@@ -597,7 +597,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           readinessProbe:
@@ -606,7 +606,7 @@ objects:
               command:
               - /bin/bash
               - -c
-              - curl -s -u Skq3VtCd:oktt6yhw 'http://localhost:8080/manager/jmxproxy/?get=Catalina%3Atype%3DServer&att=stateName'
+              - curl -s -u Skq3VtCd:oktt6yhw 'http://localhost:8081/manager/jmxproxy/?get=Catalina%3Atype%3DServer&att=stateName'
                 |grep -iq 'stateName *= *STARTED'
             initialDelaySeconds: 15
             periodSeconds: 5
@@ -642,9 +642,9 @@ objects:
     name: catalog
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: catalog
 - apiVersion: v1
@@ -828,14 +828,14 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           livenessProbe:
             failureThreshold: 2
             httpGet:
               path: "/health/liveness"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -845,7 +845,7 @@ objects:
             failureThreshold: 3
             httpGet:
               path: "/health/readiness"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -881,9 +881,9 @@ objects:
     name: rating
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: rating
 - apiVersion: v1
@@ -1023,7 +1023,7 @@ objects:
       app: rating
   data:
     rating-config.yaml: |-
-      rating.http.port: 8080
+      rating.http.port: 8081
       connection_string: mongodb://rating-mongodb:27017
       db_name: ratingdb
       username: ${RATING_DB_USERNAME}
@@ -1093,9 +1093,9 @@ objects:
         containers:
         - env:
           - name: CATALOG_ENDPOINT
-            value: "http://catalog:8080"
+            value: "http://catalog:8081"
           - name: PRICING_ENDPOINT
-            value: "http://pricing:8080"
+            value: "http://pricing:8081"
           - name: KIE_CONTAINER_DEPLOYMENT
             value: ${KIE_CONTAINER_DEPLOYMENT}
           - name: KIE_SERVER_USER
@@ -1108,7 +1108,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /health
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 5
@@ -1119,7 +1119,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           - containerPort: 8443
@@ -1129,7 +1129,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /health
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 5
@@ -1163,9 +1163,9 @@ objects:
     name: cart
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: cart
 # Pricing Rules Service
@@ -1258,7 +1258,7 @@ objects:
             failureThreshold: 5
             httpGet:
               path: /kie-server/docs/
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 120
             periodSeconds: 5
@@ -1269,7 +1269,7 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           - containerPort: 8888
@@ -1279,7 +1279,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /kie-server/docs/
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 15
             periodSeconds: 5
@@ -1315,9 +1315,9 @@ objects:
     name: pricing
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: pricing
 
@@ -1398,14 +1398,14 @@ objects:
           - containerPort: 8778
             name: jolokia
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             name: http
             protocol: TCP
           livenessProbe:
             failureThreshold: 2
             httpGet:
               path: "/health"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 10
@@ -1415,7 +1415,7 @@ objects:
             failureThreshold: 3
             httpGet:
               path: "/health"
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 10
@@ -1458,9 +1458,9 @@ objects:
     name: review
   spec:
     ports:
-    - port: 8080
+    - port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: review
 - apiVersion: v1
@@ -1602,7 +1602,7 @@ objects:
         - image: 'turbine-server'
           name: turbine-server
           ports:
-          - containerPort: 8080
+          - containerPort: 8081
             protocol: TCP
           - containerPort: 8778
             protocol: TCP
@@ -1614,7 +1614,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /health
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -1624,7 +1624,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /health
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 60
             periodSeconds: 30
@@ -1652,7 +1652,7 @@ objects:
     - name: 80-tcp
       port: 80
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: turbine-server
       component: turbine-server
@@ -1666,7 +1666,7 @@ objects:
     name: turbine-server
   spec:
     port:
-      targetPort: 8080-tcp
+      targetPort: 8081-tcp
     to:
       kind: Service
       name: turbine-server
@@ -1714,7 +1714,7 @@ objects:
           ports:
           - containerPort: 9779
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             protocol: TCP
           - containerPort: 8778
             protocol: TCP
@@ -1724,7 +1724,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -1734,7 +1734,7 @@ objects:
             failureThreshold: 10
             httpGet:
               path: /
-              port: 8080
+              port: 8081
               scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 10
@@ -1761,10 +1761,10 @@ objects:
     name: hystrix-dashboard
   spec:
     ports:
-    - name: 8080-tcp
-      port: 8080
+    - name: 8081-tcp
+      port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       deploymentconfig: hystrix-dashboard
       component: hystrix-dashboard
@@ -1778,7 +1778,7 @@ objects:
     name: hystrix-dashboard
   spec:
     port:
-      targetPort: 8080-tcp
+      targetPort: 8081-tcp
     to:
       kind: Service
       name: hystrix-dashboard

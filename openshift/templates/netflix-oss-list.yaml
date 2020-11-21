@@ -43,7 +43,7 @@ items:
         - image: 'turbine-server'
           name: turbine-server
           ports:
-          - containerPort: 8080
+          - containerPort: 8081
             protocol: TCP
           - containerPort: 8778
             protocol: TCP
@@ -57,7 +57,7 @@ items:
               command:
                 - curl
                 - '-f'
-                - 'http://localhost:8080/health'
+                - 'http://localhost:8081/health'
             initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
@@ -68,7 +68,7 @@ items:
               command:
                 - curl
                 - '-f'
-                - 'http://localhost:8080/health'
+                - 'http://localhost:8081/health'
             initialDelaySeconds: 60
             periodSeconds: 30
             successThreshold: 1
@@ -107,7 +107,7 @@ items:
     - name: 80-tcp
       port: 80
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       app: turbine-server
       group: netflix-oss
@@ -169,7 +169,7 @@ items:
           ports:
           - containerPort: 9779
             protocol: TCP
-          - containerPort: 8080
+          - containerPort: 8081
             protocol: TCP
           - containerPort: 8778
             protocol: TCP
@@ -181,7 +181,7 @@ items:
               command:
                 - curl
                 - '-f'
-                - 'http://localhost:8080'
+                - 'http://localhost:8081'
             initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
@@ -192,7 +192,7 @@ items:
               command:
                 - curl
                 - '-f'
-                - 'http://localhost:8080'
+                - 'http://localhost:8081'
             initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
@@ -225,10 +225,10 @@ items:
     name: hystrix-dashboard
   spec:
     ports:
-    - name: 8080-tcp
-      port: 8080
+    - name: 8081-tcp
+      port: 8081
       protocol: TCP
-      targetPort: 8080
+      targetPort: 8081
     selector:
       app: hystrix-dashboard
       deploymentconfig: hystrix-dashboard
@@ -242,7 +242,7 @@ items:
     name: hystrix-dashboard
   spec:
     port:
-      targetPort: 8080-tcp
+      targetPort: 8081-tcp
     to:
       kind: Service
       name: hystrix-dashboard
